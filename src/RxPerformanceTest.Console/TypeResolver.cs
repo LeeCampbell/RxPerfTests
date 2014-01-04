@@ -4,11 +4,11 @@ using System.Reflection;
 
 namespace RxPerformanceTest.Console
 {
-    public sealed class SubjectResolver
+    public sealed class TypeResolver
     {
         private readonly string _basePath;
 
-        public SubjectResolver(string basePath)
+        public TypeResolver(string basePath)
         {
             _basePath = basePath;
             AppDomain.CurrentDomain.AssemblyResolve += LoadFromSameFolder;

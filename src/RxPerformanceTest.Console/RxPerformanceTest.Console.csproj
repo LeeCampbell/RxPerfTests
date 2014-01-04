@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DummyObserver.cs" />
+    <Compile Include="FixedSubscriptionTestRunner.cs" />
+    <Compile Include="OriginalRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubjectResolver.cs" />
+    <Compile Include="TypeResolver.cs" />
+    <Compile Include="TestResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
