@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxPerformanceTest.SerialDisposable.Console", "src\RxPerformanceTest.SerialDisposable.Console\RxPerformanceTest.SerialDisposable.Console.csproj", "{401F2E29-EDA9-4621-9E98-7B9F94C2016F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{27837DD1-CE82-4C02-B7C4-2F27EDC1FC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27837DD1-CE82-4C02-B7C4-2F27EDC1FC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27837DD1-CE82-4C02-B7C4-2F27EDC1FC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401F2E29-EDA9-4621-9E98-7B9F94C2016F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401F2E29-EDA9-4621-9E98-7B9F94C2016F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401F2E29-EDA9-4621-9E98-7B9F94C2016F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401F2E29-EDA9-4621-9E98-7B9F94C2016F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
