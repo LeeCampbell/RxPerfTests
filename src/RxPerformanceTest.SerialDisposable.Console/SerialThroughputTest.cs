@@ -19,15 +19,19 @@ namespace RxPerformanceTest.SerialDisposable.Console
             _assign = assign;
         }
 
-        public IEnumerable<ThroughputTestResult> Run()
+        public ThroughputTestResult[] Run()
+        {
+            return ExecuteTests().ToArray();
+        }
+
+        private IEnumerable<ThroughputTestResult> ExecuteTests()
         {
             yield return RunSynchronously();
             int maxParallelism = 2;
             do
             {
-                yield return RunConcurrently(maxParallelism);
-                maxParallelism *= 2;
-            } while (maxParallelism <= Environment.ProcessorCount);
+                yield return RunConcurrently(maxParallelism++);
+            } while (maxParallelism <= Environment.ProcessorCount + 1);
         }
 
         private ThroughputTestResult RunSynchronously()
@@ -44,7 +48,7 @@ namespace RxPerformanceTest.SerialDisposable.Console
             }
             sut.Dispose();
             result.Dispose();
-            System.Console.WriteLine($"Elapsed {result.Elapsed.TotalSeconds}sec");
+            System.Console.WriteLine($"RunSynchronously Elapsed {result.Elapsed.TotalSeconds}sec");
             if (messages.Any(b => !b.IsDisposed))
             {
                 System.Console.WriteLine($"{sut.GetType().Name} operated incorrectly. There are still {messages.Count(b => !b.IsDisposed)} objects not disposed.");
@@ -68,7 +72,7 @@ namespace RxPerformanceTest.SerialDisposable.Console
 
             sut.Dispose();
             result.Dispose();
-
+            System.Console.WriteLine($"RunConcurrently({threads}) Elapsed {result.Elapsed.TotalSeconds}sec");
             if (messages.Any(b => !b.IsDisposed))
             {
                 System.Console.WriteLine($"{sut.GetType().Name} operated incorrectly. There are still {messages.Count(b => !b.IsDisposed)} objects not disposed.");

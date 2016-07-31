@@ -55,8 +55,7 @@
     <Compile Include="IRunnable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerialDisposableLockFree1.cs" />
-    <Compile Include="SerialDisposableLockFree2.cs" />
+    <Compile Include="SerialDisposableImplSwap.cs" />
     <Compile Include="SerialDisposableUnsafe.cs" />
     <Compile Include="SerialDisposableVolatile.cs" />
     <Compile Include="SerialThroughputTest.cs" />

@@ -11,10 +11,9 @@ namespace RxPerformanceTest.SerialDisposable.Console
         private static readonly Dictionary<string, IRunnable> TestCandidates = new Dictionary<string, IRunnable>
         {
             {"SerialDisposable", new SerialThroughputTest<System.Reactive.Disposables.SerialDisposable>(()=>new System.Reactive.Disposables.SerialDisposable(), (sut,other)=>{sut.Disposable = other;})},
-            {"SerialDisposableLockFree1", new SerialThroughputTest<SerialDisposableLockFree1>(()=>new SerialDisposableLockFree1(), (sut,other)=>{sut.Disposable = other;})},
-            {"SerialDisposableLockFree2", new SerialThroughputTest<SerialDisposableLockFree2>(()=>new SerialDisposableLockFree2(), (sut,other)=>{sut.Disposable = other;})},
             {"SerialDisposableUnsafe", new SerialThroughputTest<SerialDisposableUnsafe>(()=>new SerialDisposableUnsafe(), (sut,other)=>{sut.Disposable = other;})},
             {"SerialDisposableVolatile", new SerialThroughputTest<SerialDisposableVolatile>(()=>new SerialDisposableVolatile(), (sut,other)=>{sut.Disposable = other;})},
+            {"SerialDisposableImplSwap", new SerialThroughputTest<SerialDisposableImplSwap>(()=>new SerialDisposableImplSwap(), (sut,other)=>{sut.Disposable = other;})},
         };
 
         public static void Run()
@@ -28,9 +27,10 @@ namespace RxPerformanceTest.SerialDisposable.Console
             System.Console.ForegroundColor = ConsoleColor.DarkGray;
             foreach (var testCandidate in TestCandidates)
             {
+                System.Console.WriteLine($"Starting prime run for '{testCandidate.Key}' @ {DateTime.Now:o}.");
                 var t = testCandidate.Value.Run();
-                t.ToArray();
-                System.Console.WriteLine("Prime run {0}.", testCandidate.Key);
+                var runs = t.ToArray();
+                System.Console.WriteLine($"Completed prime run for '{testCandidate.Key}' @ {DateTime.Now:o} ({runs.Length} tests).");
             }
 
             System.Console.WriteLine("Priming complete.");
@@ -42,8 +42,10 @@ namespace RxPerformanceTest.SerialDisposable.Console
 
             foreach (var testCandidate in TestCandidates)
             {
+                System.Console.WriteLine($"Starting main run for '{testCandidate.Key}' @ {DateTime.Now:o}.");
                 var result = testCandidate.Value.Run();
-                results[testCandidate.Key] = result;
+                results[testCandidate.Key] = result.ToArray();
+                System.Console.WriteLine($"Completed main run for '{testCandidate.Key}' @ {DateTime.Now:o}.");
             }
 
             var colHeaders = results.First().Value.Select(tr => tr.Concurrency.ToString()).ToArray();
