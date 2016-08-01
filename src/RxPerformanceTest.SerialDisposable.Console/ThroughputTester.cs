@@ -13,7 +13,9 @@ namespace RxPerformanceTest.SerialDisposable.Console
             {"SerialDisposable", new SerialThroughputTest<System.Reactive.Disposables.SerialDisposable>(()=>new System.Reactive.Disposables.SerialDisposable(), (sut,other)=>{sut.Disposable = other;})},
             {"SerialDisposableUnsafe", new SerialThroughputTest<SerialDisposableUnsafe>(()=>new SerialDisposableUnsafe(), (sut,other)=>{sut.Disposable = other;})},
             {"SerialDisposableVolatile", new SerialThroughputTest<SerialDisposableVolatile>(()=>new SerialDisposableVolatile(), (sut,other)=>{sut.Disposable = other;})},
-            {"SerialDisposableImplSwap", new SerialThroughputTest<SerialDisposableImplSwap>(()=>new SerialDisposableImplSwap(), (sut,other)=>{sut.Disposable = other;})},
+            {"SerialDisposableLockFreeImplSwap", new SerialThroughputTest<SerialDisposableLockFreeImplSwap>(()=>new SerialDisposableLockFreeImplSwap(), (sut,other)=>{sut.Disposable = other;})},
+            {"SerialDisposableLockedImplSwap", new SerialThroughputTest<SerialDisposableLockedImplSwap>(()=>new SerialDisposableLockedImplSwap(), (sut,other)=>{sut.Disposable = other;})},
+            {"SerialDisposableLockFreeReactorImplSwap", new SerialThroughputTest<SerialDisposableLockFreeReactorImplSwap>(()=>new SerialDisposableLockFreeReactorImplSwap(), (sut,other)=>{sut.Disposable = other;})},
         };
 
         public static void Run()

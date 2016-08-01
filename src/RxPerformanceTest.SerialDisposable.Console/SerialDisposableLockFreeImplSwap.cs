@@ -4,11 +4,11 @@ using System.Threading;
 
 namespace RxPerformanceTest.SerialDisposable.Console
 {
-    public sealed class SerialDisposableImplSwap : ICancelable
+    public sealed class SerialDisposableLockFreeImplSwap : ICancelable
     {
         private ISerialCancelable _current = new ActiveSerialCancelable();
 
-        public SerialDisposableImplSwap()
+        public SerialDisposableLockFreeImplSwap()
         { }
 
         public bool IsDisposed => _current.IsDisposed;
